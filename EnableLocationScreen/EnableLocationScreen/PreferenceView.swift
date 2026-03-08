@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PreferenceView: View {
-    @Binding  var currentPage: Int
+    
     @State private var selectedItems: Set<String> = []
     
     let items: [(title: String, image: String)] = [
@@ -53,16 +53,14 @@ struct PreferenceView: View {
             
             // MARK: - Continue Button
             Button {
-                withAnimation {
-                    currentPage += 1
-                }
+                
             } label: {
                 Text("Continue")
                     .fontWeight(.semibold)
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(selectedItems.isEmpty ? .white.opacity(0.5) : .primaryColor)
-                    .foregroundColor(selectedItems.isEmpty ? .primaryColor : .white)
+                    .background(selectedItems.isEmpty ? .white.opacity(0.5) : .appPrimary)
+                    .foregroundColor(selectedItems.isEmpty ? .appPrimary : .white)
                     .cornerRadius(30)
                     .shadow(color: .black.opacity(0.2), radius: 10, y: 6)
             }
@@ -73,7 +71,7 @@ struct PreferenceView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(
             LinearGradient(
-                colors: [.gradientTop, .gradientBottom],
+                colors: [.topGradient, .bottomGradient],
                 startPoint: .top,
                 endPoint: .bottom
             )
@@ -99,7 +97,7 @@ struct PreferenceView: View {
                 
                 Text(item.title)
                     .font(.headline)
-                    .foregroundStyle(Color.primaryColor)
+                    .foregroundStyle(Color.appPrimary)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 14)
                     .background(Color.white.opacity(0.85))
@@ -107,7 +105,7 @@ struct PreferenceView: View {
             .clipShape(RoundedRectangle(cornerRadius: 20))
             .overlay(
                 RoundedRectangle(cornerRadius: 20)
-                    .stroke(isSelected ? Color.primaryColor : Color.white.opacity(0.3),
+                    .stroke(isSelected ? Color.appPrimary : Color.white.opacity(0.3),
                             lineWidth: isSelected ? 3 : 1)
             )
             .scaleEffect(isSelected ? 0.96 : 1)
@@ -127,7 +125,7 @@ struct PreferenceView: View {
 }
 
 #Preview {
-    PreferenceView(currentPage: .constant(1))
+    PreferenceView()
 }
 
 

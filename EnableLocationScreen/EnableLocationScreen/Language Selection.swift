@@ -3,7 +3,6 @@ import SwiftUI
 struct ChooseLanguageView: View {
     
     @State private var selectedLanguage: String? = nil
-    @Binding  var currentPage: Int
 
     
     let languages: [(String, String)] = [
@@ -47,20 +46,20 @@ struct ChooseLanguageView: View {
             
             Spacer()
             Button {
-                withAnimation {
-                    currentPage += 1
-                }
+                
             } label: {
                 Text("Continue")
                     .fontWeight(.semibold)
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(((selectedLanguage?.isEmpty) != nil) ? Color.primaryColor : .white.opacity(0.5))
-                    .foregroundColor(((selectedLanguage?.isEmpty) != nil) ? .white : Color.primaryColor)
+                    .background(((selectedLanguage?.isEmpty) != nil) ? Color.appPrimary : .white.opacity(0.5))
+                    .foregroundColor(((selectedLanguage?.isEmpty) != nil) ? .white : Color.appPrimary)
                     .cornerRadius(30)
                     .disabled(selectedLanguage == nil)
                     .padding(.horizontal)
                     .padding(.bottom, 50)
+                    .shadow(color: .black.opacity(0.2), radius: 10, y: 6)
+                
             }
             .padding(.horizontal)
 //            .padding(.bottom, 30)
@@ -68,7 +67,7 @@ struct ChooseLanguageView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(
             LinearGradient(
-                colors: [.gradientTop, .gradientBottom],
+                colors: [.topGradient, .bottomGradient],
                 startPoint: .top,
                 endPoint: .bottom
             )
@@ -88,18 +87,18 @@ struct ChooseLanguageView: View {
                 Text(title)
                     .font(.title2)
                     .bold()
-                    .foregroundStyle(Color.primaryColor)
+                    .foregroundStyle(Color.appPrimary)
                 Text(native)
                     .font(.headline)
                     .bold()
-                    .foregroundStyle(Color.primaryColor.opacity(0.6))
+                    .foregroundStyle(Color.appPrimary.opacity(0.6))
             }
             .frame(maxWidth: .infinity, minHeight: 90)
                     .padding()
                     .glassEffect(in: .rect(cornerRadius: 20))
                     .overlay(
                         RoundedRectangle(cornerRadius: 20)
-                            .stroke(selected ? Color.primaryColor : Color.clear, lineWidth: 2)
+                            .stroke(selected ? Color.appPrimary : Color.clear, lineWidth: 2)
                     )
                     .scaleEffect(selected ? 0.97 : 1)
                     .animation(.easeInOut(duration: 0.15), value: selected)
@@ -118,7 +117,7 @@ struct ChooseLanguageView: View {
 
 }
 #Preview {
-    ChooseLanguageView(currentPage: .constant(0))
+    ChooseLanguageView()
 }
 
 

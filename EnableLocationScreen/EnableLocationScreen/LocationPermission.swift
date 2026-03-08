@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct LocationPermission: View {
-    @Binding  var currentPage: Int
+    
     
     var body: some View {
         VStack(spacing: 24) {
@@ -52,7 +52,7 @@ struct LocationPermission: View {
                         .fontWeight(.semibold)
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color.primaryColor)
+                        .background(Color.appPrimary)
                         .foregroundColor(.white)
                         .cornerRadius(30)
                         .shadow(color: .orange.opacity(0.4), radius: 10, y: 6)
@@ -65,7 +65,7 @@ struct LocationPermission: View {
                         .frame(maxWidth: .infinity)
                         .padding()
                         .background(.white)
-                        .foregroundColor(Color.primaryColor)
+                        .foregroundColor(Color.appPrimary)
                         .cornerRadius(30)
                         .shadow(color: .orange.opacity(0.4), radius: 10, y: 6)
                 }
@@ -77,7 +77,7 @@ struct LocationPermission: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(
             LinearGradient(
-                colors: [.gradientTop, .gradientBottom],
+                colors: [.topGradient, .bottomGradient],
                 startPoint: .top,
                 endPoint: .bottom
             )
@@ -89,14 +89,14 @@ struct LocationPermission: View {
     func infoCard(icon: String, title: String, subtitle: String) -> some View {
             HStack(spacing: 14) {
                 Circle()
-                    .fill(Color.primaryColor)
+                    .fill(Color.appPrimary)
                     .frame(width: 44, height: 44)
                     .overlay(Image(systemName: icon).foregroundColor(.white))
                 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(title)
                         .font(.headline)
-                        .foregroundStyle(Color.primaryColor)
+                        .foregroundStyle(Color.appPrimary)
                     
                     Text(subtitle)
                         .font(.caption)
@@ -112,6 +112,6 @@ struct LocationPermission: View {
 
 
 #Preview {
-    LocationPermission(currentPage: .constant(3))
+    LocationPermission()
 }
 
