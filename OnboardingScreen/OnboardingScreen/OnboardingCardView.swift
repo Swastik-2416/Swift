@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct OnboardingCardView: View {
-    // Hardcoded data is passed in directly
     let title: String
     let illustrationName: String
     let illustrationHeight: CGFloat?
@@ -13,12 +12,11 @@ struct OnboardingCardView: View {
     let isActive: Bool
     let floatAvatar: Bool
 
-    private let cornerRadius: CGFloat = 28
+    private let cornerRadius: CGFloat = 30
     private let defaultAvatarSize: CGFloat = 120
     private let defaultAvatarBottomOffset: CGFloat = 20
 
     var body: some View {
-        // Use a default height when cardHeight isn't provided to avoid UIScreen usage
         let defaultHeight = cardHeight ?? 620
 
         VStack(spacing: 16) {
@@ -39,7 +37,7 @@ struct OnboardingCardView: View {
                         .fontWeight(.bold)
                         .multilineTextAlignment(.leading)
                         .foregroundColor(titleColor)
-                        .padding(.top, 20) // slightly moved upward
+                        .padding(.top, 20)
 
                     Image(illustrationName)
                         .resizable()
@@ -64,23 +62,4 @@ struct OnboardingCardView: View {
 }
 
 #Preview {
-    // Example hardcoded colors converted from hex
-    let titleColor = Color(red: 30/255, green: 90/255, blue: 136/255)
-    let cardGradient = [
-        Color(red: 230/255, green: 238/255, blue: 242/255),
-        Color(red: 243/255, green: 234/255, blue: 243/255)
-    ]
-
-    OnboardingCardView(
-        title: "Celebrate your culture, wherever you are",
-        illustrationName: "Illustration1",
-        illustrationHeight: 250,
-        illustrationOffsetX: 0,
-        titleColor: titleColor,
-        cardGradient: cardGradient,
-        cardHeight: 520,
-        isActive: true,
-        floatAvatar: true
-    )
-    .padding()
 }

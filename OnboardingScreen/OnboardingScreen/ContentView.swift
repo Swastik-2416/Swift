@@ -15,26 +15,26 @@ struct ContentView: View {
     let avatarNames = ["avatar1", "avatar2", "avatar3"]
 
     let titleColors: [Color] = [
-        Color(red: 30/255, green: 90/255, blue: 136/255),
-        Color(red: 106/255, green: 27/255, blue: 135/255),
-        Color(red: 177/255, green: 44/255, blue: 28/255)
+        Color.title1,
+        Color.title2,
+        Color.title3
     ]
 
     let cardGradients: [[Color]] = [
-        [Color(red: 230/255, green: 238/255, blue: 242/255), Color(red: 243/255, green: 234/255, blue: 243/255)],
-        [Color(red: 238/255, green: 211/255, blue: 247/255), Color(red: 245/255, green: 232/255, blue: 250/255)],
-        [Color(red: 246/255, green: 215/255, blue: 208/255), Color(red: 250/255, green: 234/255, blue: 230/255)]
+        [Color.cardOne],
+        [Color.cardTwo],
+        [Color.cardThree]
     ]
 
     let backgroundGradients: [[Color]] = [
-        [Color(red: 95/255, green: 150/255, blue: 165/255), Color(red: 127/255, green: 179/255, blue: 194/255), Color(red: 242/255, green: 166/255, blue: 201/255)],
-        [Color(red: 155/255, green: 69/255, blue: 184/255), Color(red: 183/255, green: 106/255, blue: 212/255), Color(red: 216/255, green: 166/255, blue: 234/255)],
-        [Color(red: 238/255, green: 123/255, blue: 110/255), Color(red: 242/255, green: 154/255, blue: 139/255), Color(red: 245/255, green: 194/255, blue: 184/255)]
+        [Color.oneTop, Color.oneBottom],
+        [Color.twoTop, Color.twoBottom],
+        [Color.threeTop, Color.threeBottom]
     ]
 
-    let illustrationHeights: [CGFloat] = [250, 400, 360]
+    let illustrationHeights: [CGFloat] = [250, 380, 400]
 
-    let illustrationOffsets: [CGFloat] = [0, 0, 35]
+    let illustrationOffsets: [CGFloat] = [0,0,0]
 
     var body: some View {
         GeometryReader { geo in
@@ -83,7 +83,7 @@ struct ContentView: View {
                 HStack(spacing: 8) {
                     ForEach(0..<titles.count, id: \.self) { idx in
                         Circle()
-                            .fill(idx == currentPage ? Color(red: 200/255, green: 90/255, blue: 36/255) : Color.white.opacity(0.4))
+                            .fill(idx == currentPage ? Color.title3 : Color.white.opacity(0.4))
                             .frame(width: idx == currentPage ? 12 : 8, height: 8)
                             .animation(.spring(), value: currentPage)
                     }
@@ -111,23 +111,19 @@ struct ContentView: View {
     }
 }
 
-// Inline CTA component placed directly in ContentView.swift per request
 private struct InlineCTA: View {
     let title: String
     let action: () -> Void
-    var backgroundColor: Color = Color(red: 196/255, green: 69/255, blue: 12/255)
-    var foregroundColor: Color = .white
-    var cornerRadius: CGFloat = 30
 
     var body: some View {
         Button(action: action) {
-            Text(title)
+            Text("Get Started")
                 .fontWeight(.semibold)
-                .foregroundColor(foregroundColor)
+                .foregroundColor(.white)
                 .frame(maxWidth: .infinity)
                 .padding()
-                .background(backgroundColor)
-                .cornerRadius(cornerRadius)
+                .background(.title3)
+                .cornerRadius(30)
         }
     }
 }
